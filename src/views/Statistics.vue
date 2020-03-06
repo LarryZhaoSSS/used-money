@@ -1,5 +1,7 @@
 <template>
-  <div class="statistics">statistics</div>
+  <div class="statistics">
+    <Layout>statistics</Layout>
+  </div>
 </template>
 <script lang="ts">
 import Vue from "vue";

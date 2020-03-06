@@ -1,6 +1,9 @@
 <template>
-  <div class="labels">
-    <Layout>Label</Layout>
+  <div class="not-found">
+    <div>not found</div>
+    <div>
+      <router-link to="/">back home</router-link>
+    </div>
   </div>
 </template>
 <script lang="ts">

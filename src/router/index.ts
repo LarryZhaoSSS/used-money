@@ -3,6 +3,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Statistics from '@/views/Statistics.vue'
 import Labels from '@/views/Labels.vue'
+import NotFound from '@/views/NotFound.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +22,10 @@ const routes = [
   {
     path: '/labels',
     component: Labels
+  },
+  {
+    path: '*',
+    component: NotFound
   }
 ]
 
