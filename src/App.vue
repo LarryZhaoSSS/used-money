@@ -7,22 +7,16 @@
 export default {};
 </script>
 <style lang="scss">
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import "~@/assets/style/helper.scss";
+@import "~@/assets/style/reset.scss";
 body {
   line-height: 1.5;
-}
-a {
-  text-decoration: none;
-  color: inherit;
+  font-family: $font-hei;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  color: #333;
 }
 </style>
