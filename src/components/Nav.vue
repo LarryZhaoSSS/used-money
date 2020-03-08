@@ -18,9 +18,9 @@ export default Vue.extend({});
 <style lang="scss" scoped>
 @import "~@/assets/style/helper.scss";
 nav {
+  @extend %outerShadow;
   display: flex;
   flex-direction: row;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   font-size: 12px;
   .item {
     width: 33.3333%;
