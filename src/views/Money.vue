@@ -28,7 +28,6 @@ export default Vue.extend({
 .layout-content {
   display: flex;
   flex-direction: column-reverse;
-  border: 3px solid red;
 }
 </style>
 <style lang="scss" scoped>
