@@ -2,7 +2,7 @@
   <div>
     <Layout class-prefix="layout">
       <number-pad></number-pad>
-      <types></types>
+      <types :propMessage="12"></types>
       <notes></notes>
       <tags></tags>
     </Layout>
@@ -18,9 +18,9 @@ export default Vue.extend({
   name: "money",
   components: {
     NumberPad,
-    Types,
     Notes,
-    Tags
+    Tags,
+    Types
   }
 });
 </script>
