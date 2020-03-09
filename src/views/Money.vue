@@ -4,7 +4,7 @@
       <number-pad></number-pad>
       <types :propMessage="12"></types>
       <notes></notes>
-      <tags></tags>
+      <tags :data-source="tags"></tags>
     </Layout>
   </div>
 </template>
@@ -21,6 +21,11 @@ export default Vue.extend({
     Notes,
     Tags,
     Types
+  },
+  data() {
+    return {
+      tags: ["衣", "食", "住", "行"]
+    };
   }
 });
 </script>
