@@ -4,7 +4,7 @@
       <number-pad></number-pad>
       <types :propMessage="12"></types>
       <notes></notes>
-      <tags :data-source="tags"></tags>
+      <tags :data-source.sync="tags"></tags>
     </Layout>
   </div>
 </template>
