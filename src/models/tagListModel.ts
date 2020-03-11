@@ -1,23 +1,28 @@
 const localStorageKeyName: string = 'tagList';
+type Tag = {
+  id: string;
+  name: string;
+};
 type TagListModel = {
-  data: string[];
-  fetch: () => string[];
+  data: Tag[];
+  fetch: () => Tag[];
   create: (name: string) => 'success' | 'duplicated'; // success 成功 duplicated 重复
   save: () => void;
 };
 const tagListModel: TagListModel = {
   data: [],
-  fetch(): string[] {
+  fetch(): Tag[] {
     this.data = JSON.parse(
       window.localStorage.getItem(localStorageKeyName) || '[]'
     );
     return this.data;
   },
   create(name) {
-    if (this.data.includes(name)) {
+    const names = this.data.map(item => item.name);
+    if (names.includes(name)) {
       return 'duplicated';
     }
-    this.data.push(name);
+    this.data.push({ id: name, name: name });
     this.save();
     return 'success';
   },
