@@ -9,7 +9,7 @@
         v-for="(tag,index) in dataSource"
         :key="index"
         @click="toggle(tag)"
-      >{{tag}}</li>
+      >{{tag.name}}</li>
     </ul>
   </div>
 </template>
