@@ -18,14 +18,16 @@ type TagListModel = {
   update: (id: string, name: string) => 'success' | 'not_found' | 'duplicated';
 };
 interface Window {
-  tagList: Tag[];
-  createTag: (name: string) => void;
-  removeTag: (id: string) => boolean;
-  findTag(id: string): Tag;
-  updateTag: (
-    id: string,
-    name: string
-  ) => 'success' | 'not_found' | 'duplicated';
-  recordList: RecordItem[];
-  createRecord: (record: RecordItem) => void;
+  store: {
+    tagList: Tag[];
+    createTag: (name: string) => void;
+    removeTag: (id: string) => boolean;
+    findTag(id: string): Tag;
+    updateTag: (
+      id: string,
+      name: string
+    ) => 'success' | 'not_found' | 'duplicated';
+    recordList: RecordItem[];
+    createRecord: (record: RecordItem) => void;
+  };
 }
