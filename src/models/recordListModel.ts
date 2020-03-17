@@ -8,17 +8,23 @@
 
 const localStorageKeyName: string = 'recordList';
 const recordList = {
+  data: [] as RecordItem[],
   clone(data: RecordItem[] | RecordItem) {
     return JSON.parse(JSON.stringify(data));
   },
-  fetch(): RecordItem[] {
-    return JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]');
+  create(record: RecordItem) {
+    const newRecord: RecordItem = this.clone(record);
+    newRecord.createdAt = new Date();
+    this.data.push(newRecord);
   },
-  save(recordList: RecordItem[]) {
-    window.localStorage.setItem(
-      localStorageKeyName,
-      JSON.stringify(recordList)
+  fetch(): RecordItem[] {
+    this.data = JSON.parse(
+      window.localStorage.getItem(localStorageKeyName) || '[]'
     );
+    return this.data;
+  },
+  save() {
+    window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
   }
 };
 

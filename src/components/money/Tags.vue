@@ -34,6 +34,8 @@ export default class Tags extends Vue {
     if (!name) {
       window.alert("标签不能为空");
     } else if (this.dataSource) {
+      console.log("222");
+      console.log([...this.dataSource, name]);
       this.$emit("update:dataSource", [...this.dataSource, name]);
     }
   }
