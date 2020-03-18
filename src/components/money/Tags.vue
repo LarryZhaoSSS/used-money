@@ -16,9 +16,10 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
+import store from "../../store/index2";
 @Component
 export default class Tags extends Vue {
-  @Prop(Array) readonly dataSource: string[] | undefined;
+  @Prop({ required: true }) readonly dataSource!: string[];
   selectedTags: string[] = [];
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
@@ -34,9 +35,7 @@ export default class Tags extends Vue {
     if (!name) {
       window.alert("标签不能为空");
     } else if (this.dataSource) {
-      console.log("222");
-      console.log([...this.dataSource, name]);
-      this.$emit("update:dataSource", [...this.dataSource, name]);
+      store.createTag(name);
     }
   }
 }
