@@ -6,7 +6,7 @@
     <ul class="current">
       <li
         :class="{selected:selectedTags.includes(tag)}"
-        v-for="(tag,index) in dataSource"
+        v-for="(tag,index) in tagList"
         :key="index"
         @click="toggle(tag)"
       >{{tag.name}}</li>
@@ -17,7 +17,13 @@
 import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 import store from "../../store/index2";
-@Component
+@Component({
+  computed: {
+    tagList() {
+      return this.$store.state.tagList;
+    }
+  }
+})
 export default class Tags extends Vue {
   @Prop({ required: true }) readonly dataSource!: string[];
   selectedTags: string[] = [];
@@ -30,13 +36,15 @@ export default class Tags extends Vue {
     this.selectedTags.push(tag);
     this.$emit("update:value", this.selectedTags);
   }
+  created() {
+    this.$store.commit("fetchTags");
+  }
   create() {
     const name = window.prompt("请输入新的标签名字");
     if (!name) {
-      window.alert("标签不能为空");
-    } else if (this.dataSource) {
-      store.createTag(name);
+      return window.alert("标签不能为空");
     }
+    this.$store.commit("createTag", name);
   }
 }
 </script>
