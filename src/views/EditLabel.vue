@@ -31,9 +31,12 @@ import store from "@/store/index2";
   components: { FormItem, Button }
 })
 export default class EditLabel extends Vue {
-  tag?: Tag = undefined;
+  get tag() {
+    return this.$store.state.currentTag;
+  }
   created() {
-    this.tag = store.findTag(this.$route.params.id);
+    this.$store.commit("fetchTags");
+    this.$store.commit("setCurrentTag", this.$route.params.id);
     if (!this.tag) {
       this.$router.replace("/404");
     }
@@ -41,16 +44,15 @@ export default class EditLabel extends Vue {
 
   updateTag(name: string) {
     if (this.tag) {
-      store.updateTag(this.tag.id, name);
+      this.$store.commit("updateTag", {
+        id: this.tag.id,
+        name
+      });
     }
   }
   remove() {
     if (this.tag) {
-      if (store.removeTag(this.tag.id)) {
-        this.goBack();
-      } else {
-        window.alert("delete fail");
-      }
+      this.$store.commit("removeTag", this.tag.id);
     }
   }
   goBack() {

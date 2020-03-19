@@ -92,14 +92,12 @@ import { tagListModel } from "../models/tagListModel";
 import Button from "@/components/Button.vue";
 import { TagHelper } from "../mixins/tagHelper";
 @Component({
-  components: { Button },
-  computed: {
-    tags() {
-      return this.$store.state.tagList;
-    }
-  }
+  components: { Button }
 })
 export default class Labels extends mixins(TagHelper) {
+  get tags() {
+    return this.$store.state.tagList;
+  }
   created() {
     this.$store.commit("fetchTags");
   }
