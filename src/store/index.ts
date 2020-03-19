@@ -38,13 +38,13 @@ const store = new Vuex.Store({
       if (names.includes(name)) {
         return 'duplicated';
       }
-      const id = createId.toString();
+      const id = createId().toString();
       state.tagList.push({ id, name: name });
       store.commit('saveTags');
       return 'success';
     },
-    saveTags() {
-      window.localStorage.setItem('tagList', JSON.stringify(this.data));
+    saveTags(state) {
+      window.localStorage.setItem('tagList', JSON.stringify(state.tagList));
     }
   },
   actions: {},
