@@ -2,7 +2,7 @@
   <div>
     <Layout class-prefix="layout">
       <number-pad @update:value="onUpdateAmount" @submit="saveRecord"></number-pad>
-      <types :type="record.type" :value.sync="record.type"></types>
+      <Tabs :data-source="recordTypeList" :value.sync="record.type"></Tabs>
       <div class="notes">
         <form-item field-name="备注" placeholder="在这里输入备注" @update:value="onUpdateNotes"></form-item>
       </div>
@@ -14,15 +14,17 @@
 <script lang="ts">
 import Vue from "vue";
 import NumberPad from "@/components/money/number-pad.vue";
-import Types from "@/components/money/Types.vue";
 import FormItem from "@/components/money/FormItem.vue";
 import Tags from "@/components/money/Tags.vue";
+import Tabs from "@/components/Tabs.vue";
 import { Component, Watch } from "vue-property-decorator";
+import { typeList } from "@/enums/constants/recordTypeList";
+
 window.localStorage.setItem("version", "0.0.1");
 import store from "@/store/index2";
 
 @Component({
-  components: { Tags, FormItem, Types, NumberPad },
+  components: { Tags, FormItem, NumberPad, Tabs },
   computed: {
     recordList() {
       return this.$store.state.recordList;
@@ -33,6 +35,7 @@ export default class Money extends Vue {
   tags = store.tagList;
   // recordList: RecordItem[] = store.recordList;
   record: RecordItem = { tags: [], notes: "", type: "-", amount: 0 };
+  recordTypeList = typeList;
   created() {
     this.$store.commit("fetchRecords");
   }
