@@ -99,6 +99,7 @@ export default class Statistics extends Vue {
         return sum + item.amount;
       }, 0);
     });
+
     return result;
   }
   type = '-';
@@ -112,9 +113,9 @@ export default class Statistics extends Vue {
 </script>
 <style lang="scss" scoped>
 ::v-deep .type-tabs-item {
-  background: #fff;
+  background: #c4c4c4;
   &.selected {
-    background: #c4c4c4;
+    background: #fff;
     &::after {
       display: none;
     }
